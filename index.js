@@ -10,6 +10,9 @@ function addToDo(event) {
   item.innerText = document.getElementById("item").value;
   // set the text of the newly created list item to the value of the iput with an id of "item"
 
+  item.addEventListener("click", completeToDo);
+  // add completeToDo function to each item to grey out item on click
+
   const button = document.createElement("button");
   // creates new button element
 
@@ -36,4 +39,16 @@ function removeToDo(event) {
   event.target.parentNode.remove();
   //event.target ==> button
   //event.target.parentNode ==> individual li
+}
+
+function completeToDo(event) {
+  // value of the 'aria-checked' attribute list item was clicked
+  const value = event.target.getAttribute("aria-checked");
+  if (value !== "true") {
+    event.target.setAttribute("aria-checked", "true");
+    // if value is 'false' set it to true
+  } else {
+    event.target.setAttribute("aria-checked", "false");
+    //if value is 'true' set it to false
+  }
 }
